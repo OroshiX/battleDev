@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 public class Exercice1 {
     public void solve(int testNumber, Scanner in, PrintWriter out) {
-        out.println("Exercice1");
+        int N = in.nextInt();
+        out.println(N);
     }
 }
