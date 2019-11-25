@@ -4,6 +4,8 @@ out/
 .idea/
 *.iml
 output/
+CHelperReport.txt
+
 # Log file
 *.log
 
