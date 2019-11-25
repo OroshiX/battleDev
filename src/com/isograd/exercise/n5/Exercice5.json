@@ -1,5 +1,5 @@
 {
-  "name" : "BadStuds",
+  "name" : "Exercice5",
   "testType" : "SINGLE",
   "input" : {
     "type" : "STANDARD",
@@ -10,14 +10,14 @@
     "fileName" : "output.txt"
   },
   "tests" : [ ],
-  "location" : "src/com/isograd/exercise",
+  "location" : "src/com/isograd/exercise/n5",
   "vmArgs" : "-Xmx256m -Xss64m",
   "mainClass" : "IsoContest",
-  "taskClass" : "com.isograd.exercise.BadStudents",
+  "taskClass" : "com.isograd.exercise.n5.Exercice5",
   "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
   "checkerParameters" : "",
   "testClasses" : [ ],
-  "date" : "2019.10.30",
+  "date" : "2019.11.25",
   "contestName" : "BattleDev",
   "truncate" : true,
   "inputClass" : "java.util.Scanner",

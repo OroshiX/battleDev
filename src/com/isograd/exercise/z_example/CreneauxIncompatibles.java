@@ -1,6 +1,4 @@
-package com.isograd.exercise.exo4;
-
-import com.isograd.exercise.BadStudents;
+package com.isograd.exercise.z_example;
 
 public class CreneauxIncompatibles {
     public CreneauxIncompatibles(Choice choice1, int index1, Choice choice2, int index2) {

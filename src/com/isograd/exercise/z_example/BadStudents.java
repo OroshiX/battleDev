@@ -1,17 +1,31 @@
-package com.isograd.exercise;
+package com.isograd.exercise.z_example;
 
-import com.isograd.exercise.exo4.Choice;
-import com.isograd.exercise.exo4.CreneauxIncompatibles;
+import com.isograd.exercise.util.Util;
 import sat.Clause;
 import sat.DPLLSolver;
 import sat.DimacsParser;
 import sat.Literal;
 
-import java.util.*;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 public class BadStudents {
-    public static int N;
+    private static int N;
+
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        Scanner in = new Scanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        BadStudents solver = new BadStudents();
+        solver.solve(1, in, out);
+        out.close();
+    }
 
     public void solve(int testNumber, Scanner in, PrintWriter out) {
         N = in.nextInt();
@@ -24,7 +38,7 @@ public class BadStudents {
 
         List<CreneauxIncompatibles> creneauxIncompatibles = calculateIncompatibleCreneaux(horairesA, horairesB);
         List<Integer[]> listOfOrs = transformToListOfOrs(creneauxIncompatibles);
-        String cnf = transformToCnf(listOfOrs);
+        String cnf = Util.transformToCnf(listOfOrs, 2 * N);
 
         DimacsParser parser = new DimacsParser(false, cnf);
         ArrayList<Clause> conjuncts = parser.parseDimacs();
@@ -32,12 +46,12 @@ public class BadStudents {
         ArrayList<Literal> model = solver.findModel(conjuncts);
 
         if (model == null) {
-            System.out.println("KO");
+            out.println("KO");
         } else {
             model.sort(Comparator.comparingInt(Literal::get));
             for (int i = 0; i < N; i++) {
                 Literal literal = model.get(i);
-                System.out.println(literal.getTruth() ? 1 : 2);
+                out.println(literal.getTruth() ? 1 : 2);
             }
         }
     }
@@ -89,46 +103,4 @@ public class BadStudents {
 
         return orList;
     }
-
-    private static String transformToCnf(List<Integer[]> listOfOrs) {
-        StringBuilder builder = new StringBuilder();
-        // problem
-        builder.append("p cnf ").append(2 * N).append(' ').append(listOfOrs.size()).append("\n");
-        // clauses
-        for (Integer[] ors : listOfOrs) {
-            StringJoiner sj = new StringJoiner(" ", "", " 0\n");
-            for (Integer member : ors) {
-                sj.add(member.toString());
-            }
-            builder.append(sj.toString());
-        }
-
-        return builder.toString();
-    }
-
-//
-//    static class Creneau {
-//        public Choice choice;
-//        public int index;
-//
-//        public Creneau(Choice choice, int index) {
-//            this.choice = choice;
-//            this.index = index;
-//        }
-//
-//        public int toMember() {
-//            return index + (choice == Choice.A ? 0 : BadStudents.N);
-//        }
-//
-//
-//    }
-//
-//    public static Creneau toIndex(int member) {
-//        Creneau creneau = new Creneau(Choice.A, member);
-//        if (member > BadStudents.N) {
-//            creneau.index -= BadStudents.N;
-//            creneau.choice = Choice.B;
-//        }
-//        return creneau;
-//    }
 }
