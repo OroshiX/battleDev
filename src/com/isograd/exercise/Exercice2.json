@@ -1,5 +1,5 @@
 {
-  "name" : "Exercice1",
+  "name" : "Exercice2",
   "testType" : "SINGLE",
   "input" : {
     "type" : "STANDARD",
@@ -10,14 +10,14 @@
     "fileName" : "output.txt"
   },
   "tests" : [ ],
-  "location" : "src/com/isograd/exercise/n1",
+  "location" : "src/com/isograd/exercise",
   "vmArgs" : "-Xmx256m -Xss64m",
-  "mainClass" : "IsoContest",
-  "taskClass" : "com.isograd.exercise.n1.Exercice1",
+  "mainClass" : "Solution",
+  "taskClass" : "com.isograd.exercise.n2.Exercice2",
   "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
   "checkerParameters" : "",
   "testClasses" : [ ],
-  "date" : "2019.11.25",
+  "date" : "2020.03.25",
   "contestName" : "BattleDev",
   "truncate" : true,
   "inputClass" : "java.util.Scanner",
