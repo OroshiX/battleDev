@@ -9,10 +9,20 @@
     "type" : "STANDARD",
     "fileName" : "output.txt"
   },
-  "tests" : [ ],
+  "tests" : [ {
+    "input" : "5\n1 08:45-12:59\n2 08:24-10:54\n1 14:45-14:47\n3 09:56-16:25\n5 15:16-16:28",
+    "output" : "1 13:00-13:59",
+    "index" : 0,
+    "active" : false
+  }, {
+    "input" : "16\n1 09:42-11:00\n4 12:06-12:36\n2 17:52-17:58\n1 14:50-15:14\n1 08:00-17:59\n2 08:00-12:28\n2 17:16-17:41\n1 08:10-13:01\n2 13:29-17:59\n5 17:55-17:56\n4 08:00-17:59\n3 13:00-13:38\n2 10:38-10:59\n5 08:00-17:59\n5 16:27-17:34\n3 08:00-17:59",
+    "output" : "2 12:29-13:28",
+    "index" : 1,
+    "active" : true
+  } ],
   "location" : "src/com/isograd/exercise",
   "vmArgs" : "-Xmx256m -Xss64m",
-  "mainClass" : "Solution",
+  "mainClass" : "IsoContest",
   "taskClass" : "com.isograd.exercise.n3.Exercice3",
   "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
   "checkerParameters" : "",

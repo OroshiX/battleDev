@@ -12,7 +12,7 @@
   "tests" : [ ],
   "location" : "src/com/isograd/exercise",
   "vmArgs" : "-Xmx256m -Xss64m",
-  "mainClass" : "Solution",
+  "mainClass" : "IsoContest",
   "taskClass" : "com.isograd.exercise.n5.Exercice5",
   "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
   "checkerParameters" : "",

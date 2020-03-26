@@ -9,10 +9,20 @@
     "type" : "STANDARD",
     "fileName" : "output.txt"
   },
-  "tests" : [ ],
+  "tests" : [ {
+    "input" : "3\nfeu sol plante\nplante vol eau",
+    "output" : "eau plante vol",
+    "index" : 0,
+    "active" : false
+  }, {
+    "input" : "10\nsol glace poison sol sol vol poison plante plante glace\nplante eau poison poison feu vol poison glace sol plante",
+    "output" : "plante eau poison poison feu vol poison glace sol plante",
+    "index" : 1,
+    "active" : true
+  } ],
   "location" : "src/com/isograd/exercise",
   "vmArgs" : "-Xmx256m -Xss64m",
-  "mainClass" : "Solution",
+  "mainClass" : "IsoContest",
   "taskClass" : "com.isograd.exercise.n4.Exercice4",
   "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
   "checkerParameters" : "",
