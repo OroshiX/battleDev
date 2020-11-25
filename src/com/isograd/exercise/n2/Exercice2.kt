@@ -2,10 +2,13 @@ package com.isograd.exercise.n2
 
 import java.util.*
 
-fun main(args: Array<String>) {
+fun main() {
     with(Scanner(System.`in`)) {
-        val n = readLine()!!.toInt()
+        val N = readLine()!!.toInt()
+        for (i in 0 until N) {
+            val (n, P, m) = nextLine().split(" ").map { it.toInt() }
+        }
 
-        print(n)
+        print(N)
     }
 }
