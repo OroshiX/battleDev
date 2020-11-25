@@ -1,5 +1,7 @@
-package sat
+package com.isograd.exercise.z_example
 
+import com.isograd.exercise.util.DPLLSolver
+import com.isograd.exercise.util.DimacsParser
 import com.isograd.exercise.util.modelToString
 import kotlin.system.exitProcess
 
@@ -20,10 +22,6 @@ fun main(args: Array<String>) {
     /* Initialize parser and parse input file */
     val parser = DimacsParser(true, args[0])
     val conjuncts = parser.parseDimacs()
-
-    /* DEBUGGING */
-    // for(Clause c : conjuncts)
-    // 	System.err.println(c);
 
     /* Apply DPLL and return the model */
     val solver = DPLLSolver(parser.numLiterals)

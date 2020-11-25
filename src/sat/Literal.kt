@@ -1,7 +1,7 @@
 package sat
 
-/* Defines a literal as an integer value with a boolean truth value */
-class Literal(private val lit: Int, var truth: Boolean) {
+/** Defines a literal as an integer value with a boolean truth value */
+data class Literal(private val lit: Int, var truth: Boolean) {
 
     fun get(): Int {
         return lit

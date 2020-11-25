@@ -4,7 +4,7 @@ import java.io.*
 import java.util.*
 import kotlin.system.exitProcess
 
-/* A class responsible for parsing files in the DIMACS format.
+/** A class responsible for parsing files in the DIMACS format.
   The primary parseDimacs() method returns a list of clauses
 
   TO DO: - General input parsing
@@ -15,7 +15,7 @@ class DimacsParser(private val file: Boolean,
         private set
     private var numberOfClauses = 0
 
-    /* Opens the file and returns a list of clauses parsed
+    /** Opens the file and returns a list of clauses parsed
     from the file */
     fun parseDimacs(): ArrayList<Clause> {
         var line = ""
@@ -36,7 +36,8 @@ class DimacsParser(private val file: Boolean,
             exitProcess(0)
         }
 
-        /* Read the file and catch the clauses */try {
+        /* Read the file and catch the clauses */
+        try {
             /* Read until the "problem" line is reached */
             while (!problemLineReached && reader.readLine().also {
                         line = it
@@ -52,8 +53,8 @@ class DimacsParser(private val file: Boolean,
                 }
             }
 
-            /* Read in the "problem" line */split =
-                    line.split("\\s+".toRegex()).toTypedArray()
+            /* Read in the "problem" line */
+            split = line.split("\\s+".toRegex()).toTypedArray()
             var i = 0
             while (split[i] == "") {
                 i++
@@ -73,7 +74,8 @@ class DimacsParser(private val file: Boolean,
                 /* Initialize the clause */
                 val clause = Clause()
 
-                /* Construct the clause */while (!endOfClause) {
+                /* Construct the clause */
+                while (!endOfClause) {
                     line = reader.readLine()
                     split = line.split("\\s+".toRegex()).toTypedArray()
                     for (s in split) {
