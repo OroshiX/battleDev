@@ -1,11 +1,18 @@
 package com.isograd.exercise.n3
 
+/***************************
+ ***                     ***
+ *** Solution by OroshiX ***
+ ***                     ***
+ ***************************/
+import java.io.FileInputStream
 import java.util.*
 
 
 fun main() {
+//    with(Scanner(FileInputStream("D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex3\\input1.txt"))) {
     with(Scanner(System.`in`)) {
-        val n = readLine()!!.toInt()
+        val n = nextLine()!!.toInt()
         for (i in 0 until n) {
             val line = nextLine()
         }
