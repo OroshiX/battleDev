@@ -9,19 +9,33 @@ import java.io.FileInputStream
 import java.util.*
 
 fun main() {
-    //        with(Scanner(FileInputStream("D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex1\\input1.txt"))) {
-    with(Scanner(System.`in`)) {
-        val n = nextLine().toInt()
-        var s = 0
-        for (i in 0 until n) {
-            val line = nextLine()
-            val matches = line.matches(Regex("\\w*[0-9]{5}"))
-            if(matches) s++
+    val debug = true
+    val numExercise = 1
+    val maxInputs = 3
+    val totalInputs = if (debug) maxInputs else 1
+    for (numInput in 1..totalInputs) {
+        val startTime = System.currentTimeMillis()
+        val outputExpected: String = if (debug) Scanner(FileInputStream(
+                "D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex$numExercise\\output$numInput.txt")).nextLine()
+        else ""
+        val res = solve(Scanner(if (debug) FileInputStream(
+                "D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex$numExercise\\input$numInput.txt")
+                                else System.`in`))
+        if (debug) {
+            if (res != outputExpected) System.err.println(
+                    "error: expected $outputExpected but found $res")
+            System.err.println(
+                    "Took ${System.currentTimeMillis() - startTime} ms to execute")
+            println(res)
+        } else {
+            print(res)
         }
-        print(s)
-//        print(lines.maxByOrNull { pair -> pair.first }?.second)
     }
 }
-// maxByOrNull { pair -> pair.first}?.second
 
-//fun readInts() = readLine()!!.split(' ').map { it.toInt() }
+fun solve(scanner: Scanner): String {
+    with(scanner) {
+        val n = nextLine().toInt()
+        TODO()
+    }
+}

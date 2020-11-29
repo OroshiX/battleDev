@@ -7,48 +7,35 @@ package com.isograd.exercise.n3
  ***************************/
 import java.io.FileInputStream
 import java.util.*
-import kotlin.collections.ArrayDeque
-
 
 fun main() {
-    with(Scanner(FileInputStream(
-            "D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex3\\input2.txt"))) {
-//    with(Scanner(System.`in`)) {
-        val n = nextLine()!!.toInt()
-        val setAgentNames = mutableMapOf<Int, Agent>()
-        for (i in 1 until n) {
-            val (a, b) = nextLine().split(" ").map { it.toInt() }
-            if (!setAgentNames.containsKey(a)) {
-                setAgentNames[a] = Agent(a, mutableListOf())
-            }
-            if (!setAgentNames.containsKey(b)) {
-                setAgentNames[b] = Agent(b, mutableListOf())
-            }
-            val bb = setAgentNames[b]!!
-            bb.children.add(setAgentNames[a]!!)
+    val debug = true
+    val numExercise = 3
+    val maxInputs = 3
+    val totalInputs = if (debug) maxInputs else 1
+    for (numInput in 1..totalInputs) {
+        val startTime = System.currentTimeMillis()
+        val outputExpected: String = if (debug) Scanner(FileInputStream(
+                "D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex$numExercise\\output$numInput.txt")).nextLine()
+        else ""
+        val res = solve(Scanner(if (debug) FileInputStream(
+                "D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex$numExercise\\input$numInput.txt")
+                                else System.`in`))
+        if (debug) {
+            if (res != outputExpected) System.err.println(
+                    "error: expected $outputExpected but found $res")
+            System.err.println(
+                    "Took ${System.currentTimeMillis() - startTime} ms to execute")
+            println(res)
+        } else {
+            print(res)
         }
-        print(calculateNumberAgents(setAgentNames[0]!!).joinToString(
-                " ") { i -> i.toString() })
     }
 }
 
-fun calculateNumberAgents(agent: Agent): List<Int> {
-    val res = List(10) { 0 }.toMutableList()
-    val queue = ArrayDeque<Agent>()
-    queue.add(agent)
-    while (queue.isNotEmpty()) {
-        val current = queue.removeFirst()
-        if(current.niveau + 1 < 10) {
-            res[current.niveau + 1] += current.children.size
-        }
-        if (current.children.isNotEmpty()) {
-            current.children.forEach { it.niveau = current.niveau + 1 }
-            queue.addAll(current.children)
-            current.children.clear()
-        }
+fun solve(scanner: Scanner): String {
+    with(scanner) {
+        val n = nextLine().toInt()
+        TODO()
     }
-    return res.apply { this[0] = 1 }
 }
-
-data class Agent(val name: Int, val children: MutableList<Agent>,
-                 var niveau: Int = 0)
