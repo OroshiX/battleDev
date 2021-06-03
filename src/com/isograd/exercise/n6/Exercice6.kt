@@ -5,32 +5,14 @@ package com.isograd.exercise.n6
  *** Solution by OroshiX ***
  ***                     ***
  ***************************/
+import java.io.File
 import java.io.FileInputStream
 import java.util.*
 
+// for export to site
 fun main() {
-    val debug = true
-    val numExercise = 6
-    val maxInputs = 5
-    val totalInputs = if (debug) maxInputs else 1
-    for (numInput in 1..totalInputs) {
-        val startTime = System.currentTimeMillis()
-        val outputExpected: String = if (debug) Scanner(FileInputStream(
-                "D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex$numExercise\\output$numInput.txt")).nextLine()
-        else ""
-        val res = solve(Scanner(if (debug) FileInputStream(
-                "D:\\Documents\\Dev\\projects\\battledev\\Inputs\\ex$numExercise\\input$numInput.txt")
-                                else System.`in`))
-        if (debug) {
-            if (res != outputExpected) System.err.println(
-                    "error: expected $outputExpected but found $res")
-            System.err.println(
-                    "Took ${System.currentTimeMillis() - startTime} ms to execute")
-            println(res)
-        } else {
-            print(res)
-        }
-    }
+    val res = solve(Scanner(System.`in`))
+    print(res)
 }
 
 fun solve(scanner: Scanner): String {
@@ -39,3 +21,31 @@ fun solve(scanner: Scanner): String {
         TODO()
     }
 }
+
+// region for local testing
+const val numExercise = 6
+@Suppress("DuplicatedCode")
+fun main(args: Array<String>) {
+    val output = ".\\Inputs\\ex%d\\output%d.txt"
+    val input = ".\\Inputs\\ex%d\\input%d.txt"
+    var numInput = 1
+    var fileInput = File(input.format(numExercise, numInput))
+
+    while (fileInput.exists()) {
+        System.err.println("With input $numInput")
+        val outputExpected =
+            Scanner(FileInputStream(output.format(numExercise, numInput))).nextLine()
+        val startTime = System.currentTimeMillis()
+        val res = solve(Scanner(FileInputStream(fileInput)))
+        System.err.println(
+            "[Ex $numExercise; input $numInput]: ${System.currentTimeMillis() - startTime} ms"
+        )
+        if(res.trim() != outputExpected.trim()) {
+            System.err.println("Error: Expected $outputExpected but found $res")
+        }
+        println(res)
+        numInput++
+        fileInput = File(input.format(numExercise, numInput))
+    }
+}
+// endregion
