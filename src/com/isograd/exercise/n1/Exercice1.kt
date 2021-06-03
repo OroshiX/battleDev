@@ -17,8 +17,10 @@ fun main() {
 
 fun solve(scanner: Scanner): String {
     with(scanner) {
-        val n = nextLine().toInt()
-        TODO()
+        val D = nextLine().toInt()
+        val L = nextLine().toInt()
+        val res = D + L * 5
+        return "$res"
     }
 }
 

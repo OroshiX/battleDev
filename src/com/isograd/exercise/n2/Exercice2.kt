@@ -17,8 +17,13 @@ fun main() {
 
 fun solve(scanner: Scanner): String {
     with(scanner) {
+        val map = mutableMapOf<String, Int>()
         val n = nextLine().toInt()
-        TODO()
+        for (i in 0 until n) {
+            val button = next()
+            map[button] = map.getOrDefault(button, 0) + 1
+        }
+        return map.filter { entry -> entry.value == 2 }.keys.first()
     }
 }
 

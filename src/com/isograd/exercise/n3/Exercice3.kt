@@ -17,13 +17,48 @@ fun main() {
 
 fun solve(scanner: Scanner): String {
     with(scanner) {
-        val n = nextLine().toInt()
-        TODO()
+        val grid = mutableListOf<String>()
+        for (i in 1..20) {
+            val line = next()
+            grid.add(line)
+        }
+        val t = hasTetris(grid) ?: return "NOPE"
+        return "BOOM ${t + 1}"
     }
 }
 
+fun hasTetris(grid: List<String>): Int? {
+    for (j in 0 until 10) {
+        if (tetrisOnColumn(grid, j)) {
+            return j
+        }
+    }
+    return null
+}
+
+fun tetrisOnColumn(grid: List<String>, j: Int): Boolean {
+    var lastEmptyRow = 0
+    for (i in grid.indices) {
+        if (grid[i][j] == '.') {
+            lastEmptyRow = i
+        } else {
+            break
+        }
+    }
+    if (lastEmptyRow < 3) return false // no tetris
+    for (i in lastEmptyRow downTo lastEmptyRow - 3) {
+        val isTetris = grid[i].foldIndexed(true) { index, acc, c ->
+            acc && (index == j || c == '#')
+        }
+        if (!isTetris) return false
+    }
+    return true
+}
+
+
 // region for local testing
 const val numExercise = 3
+
 @Suppress("DuplicatedCode")
 fun main(args: Array<String>) {
     val output = ".\\Inputs\\ex%d\\output%d.txt"
